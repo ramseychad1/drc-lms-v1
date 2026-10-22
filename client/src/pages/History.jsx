@@ -27,12 +27,13 @@ export default function History() {
             <div className="table-wrap">
               <table>
                 <thead>
-                  <tr><th>Date</th><th>Questions</th><th>Right</th><th>Wrong</th><th>Score</th><th /></tr>
+                  <tr><th>Date</th><th>Type</th><th>Questions</th><th>Right</th><th>Wrong</th><th>Score</th><th /></tr>
                 </thead>
                 <tbody>
                   {data?.map((q) => (
                     <tr key={q.id}>
                       <td>{formatDate(q.completedAt)}</td>
+                      <td><span className="mode-tag">{q.mode === 'animal-sign' ? 'Animal signs' : 'All topics'}</span></td>
                       <td>{q.total}</td>
                       <td className="right">{q.correct}</td>
                       <td className="wrong">{q.incorrect}</td>

@@ -279,5 +279,16 @@ td.wrong { color: var(--bad); font-weight: 600; }
   .lightbox { padding: 56px 8px; }
 }
 
-.extras .gallery { grid-template-columns: repeat(auto-fill, minmax(110px, 140px)); }
+.gallery.whole { grid-template-columns: minmax(0, 320px); }
+.gallery.whole .gallery-item img { aspect-ratio: 1 / 1; object-fit: contain; background: var(--surface-2); }
+.review .gallery.whole { max-width: 240px; }
+.mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mode-switch button {
+  text-align: left; padding: 12px 14px; border-radius: 10px;
+  border: 2px solid var(--border); background: var(--surface); display: grid; gap: 2px;
+}
+.mode-switch button small { color: var(--muted); }
+.mode-switch button.on { border-color: var(--primary); background: var(--surface-2); }
+.mode-tag { font-size: 0.8rem; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+@media (max-width: 560px) { .mode-switch { grid-template-columns: 1fr; } }
 .gallery.n3 { grid-template-columns: repeat(3, 1fr); }

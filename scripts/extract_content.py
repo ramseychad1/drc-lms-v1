@@ -74,9 +74,9 @@ def parse_page(text):
     return d
 
 
-# Slides carry a small decorative object picture (frisbee, pole, ...) next to the
-# dolphin photos. Anything placed smaller than this (in PDF points^2) is an "extra".
-EXTRA_MAX_AREA = 30000
+# Each slide may carry one small "animal sign" picture (a symbol on a pole, ring, frisbee...)
+# next to the animal photos. Anything placed smaller than this (in PDF points^2) is a sign.
+SIGN_MAX_AREA = 30000
 
 
 def placed_sizes(reader):
@@ -135,19 +135,19 @@ def main():
             sizes = placed[page]
             if len(sizes) != len(photos):
                 raise SystemExit(f"page {page}: {len(photos)} extracted vs {len(sizes)} placed images")
-            d["photos"], d["extras"] = [], []
+            d["photos"], d["animalSigns"] = [], []
             for i, p in enumerate(photos, 1):
                 w, h = sizes[i - 1]
-                if w * h == 0:
-                    continue  # invisible (zero-size) image on the slide
+                # A few slides have malformed transform numbers, so the placed size reads as 0.
+                # Those are always the small sign picture (checked against the rendered slides).
                 im0 = Image.open(p)
-                if abs(im0.width / im0.height - w / h) > 0.15 * (w / h) and not (w * h > 300000):
+                if w * h and abs(im0.width / im0.height - w / h) > 0.15 * (w / h) and not (w * h > 300000):
                     print(f"  warn: page {page} image {i} aspect differs (cropped?)")
                 fname = f"{d['slug']}-{i}.jpg"
                 im = Image.open(p)
                 fit(im, 1600).save(OUT / "photos" / fname, quality=84, optimize=True)
                 fit(im, 480).save(OUT / "thumbs" / fname, quality=80, optimize=True)
-                (d["extras"] if w * h < EXTRA_MAX_AREA else d["photos"]).append(fname)
+                (d["animalSigns"] if w * h < SIGN_MAX_AREA else d["photos"]).append(fname)
             dolphins.append(d)
 
     DATA.parent.mkdir(exist_ok=True)

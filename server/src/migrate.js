@@ -50,7 +50,11 @@ CREATE TABLE IF NOT EXISTS quiz_questions (
   UNIQUE (quiz_id, position)
 );
 
-ALTER TABLE dolphin_photos ADD COLUMN IF NOT EXISTS is_extra BOOLEAN NOT NULL DEFAULT FALSE;
+-- kind: 'photo' or 'animal-sign' (the symbol shown on the animal's slide). Rows are reloaded on every start.
+ALTER TABLE dolphin_photos ADD COLUMN IF NOT EXISTS kind TEXT NOT NULL DEFAULT 'photo';
+ALTER TABLE dolphin_photos DROP COLUMN IF EXISTS is_extra;
+-- mode: 'all' (mixed facts) or 'animal-sign' (signs only)
+ALTER TABLE quizzes ADD COLUMN IF NOT EXISTS mode TEXT NOT NULL DEFAULT 'all';
 
 CREATE INDEX IF NOT EXISTS quizzes_completed_idx ON quizzes (completed_at DESC);
 `;
@@ -78,12 +82,11 @@ export async function migrate() {
       );
       const id = rows[0].id;
       await client.query('DELETE FROM dolphin_photos WHERE dolphin_id = $1', [id]);
-      // Photos first, then small non-dolphin "extra" images (toys etc.) which the quiz ignores.
-      const images = [...d.photos.map((f) => [f, false]), ...(d.extras ?? []).map((f) => [f, true])];
-      for (const [i, [filename, isExtra]] of images.entries()) {
+      const images = [...d.photos.map((f) => [f, 'photo']), ...(d.animalSigns ?? []).map((f) => [f, 'animal-sign'])];
+      for (const [i, [filename, kind]] of images.entries()) {
         await client.query(
-          'INSERT INTO dolphin_photos (dolphin_id, position, filename, is_extra) VALUES ($1,$2,$3,$4)',
-          [id, i + 1, filename, isExtra],
+          'INSERT INTO dolphin_photos (dolphin_id, position, filename, kind) VALUES ($1,$2,$3,$4)',
+          [id, i + 1, filename, kind],
         );
       }
     }

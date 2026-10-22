@@ -52,10 +52,10 @@ export default function DolphinDetail() {
                 ) : (
                   <p className="empty">No photos on the source slide.</p>
                 )}
-                {d.extras.length > 0 && (
+                {d.animalSigns.length > 0 && (
                   <>
-                    <h2 className="section-title">Other images on the slide</h2>
-                    <div className="extras"><PhotoGallery photos={d.extras} name={`${d.name} slide extra`} /></div>
+                    <h2 className="section-title">Animal sign</h2>
+                    <div className="sign"><PhotoGallery photos={d.animalSigns} name={`${d.name}’s animal sign`} whole /></div>
                   </>
                 )}
               </section>

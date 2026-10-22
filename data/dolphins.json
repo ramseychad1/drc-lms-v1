@@ -13,7 +13,7 @@
       "ace-2.jpg",
       "ace-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Aleta",
@@ -29,7 +29,7 @@
       "aleta-2.jpg",
       "aleta-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "aleta-4.jpg"
     ]
   },
@@ -46,7 +46,7 @@
       "atocha-2.jpg",
       "atocha-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "atocha-4.jpg"
     ]
   },
@@ -64,7 +64,7 @@
       "baby-2.jpg",
       "baby-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Bowie",
@@ -79,7 +79,7 @@
       "bowie-3.jpg",
       "bowie-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "bowie-1.jpg"
     ]
   },
@@ -96,7 +96,7 @@
       "cacica-2.jpg",
       "cacica-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "cacica-4.jpg"
     ]
   },
@@ -114,7 +114,7 @@
       "calusa-3.jpg",
       "calusa-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "calusa-1.jpg"
     ]
   },
@@ -132,7 +132,7 @@
       "cane-2.jpg",
       "cane-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Cayo",
@@ -147,7 +147,7 @@
       "cayo-2.jpg",
       "cayo-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "cayo-3.jpg"
     ]
   },
@@ -165,7 +165,7 @@
       "clyde-2.jpg",
       "clyde-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Delta",
@@ -180,7 +180,7 @@
       "delta-2.jpg",
       "delta-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "delta-3.jpg"
     ]
   },
@@ -198,7 +198,7 @@
       "diamond-2.jpg",
       "diamond-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Diva",
@@ -213,7 +213,9 @@
       "diva-2.jpg",
       "diva-4.jpg"
     ],
-    "extras": []
+    "animalSigns": [
+      "diva-3.jpg"
+    ]
   },
   {
     "name": "Flagler",
@@ -228,7 +230,7 @@
       "flagler-2.jpg",
       "flagler-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "flagler-3.jpg"
     ]
   },
@@ -245,7 +247,7 @@
       "gambit-2.jpg",
       "gambit-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "gambit-3.jpg"
     ]
   },
@@ -262,7 +264,7 @@
       "gypsi-2.jpg",
       "gypsi-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "gypsi-3.jpg"
     ]
   },
@@ -280,7 +282,7 @@
       "jax-2.jpg",
       "jax-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "jax-4.jpg"
     ]
   },
@@ -296,7 +298,7 @@
     "photos": [
       "j-j-1.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Lina",
@@ -313,7 +315,7 @@
       "lina-2.jpg",
       "lina-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Louie",
@@ -329,7 +331,7 @@
       "louie-2.jpg",
       "louie-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "louie-3.jpg"
     ]
   },
@@ -346,7 +348,7 @@
       "luna-2.jpg",
       "luna-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "luna-3.jpg"
     ]
   },
@@ -364,7 +366,7 @@
       "merina-2.jpg",
       "merina-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "merina-4.jpg"
     ]
   },
@@ -381,7 +383,7 @@
       "morada-2.jpg",
       "morada-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "morada-4.jpg"
     ]
   },
@@ -399,7 +401,7 @@
       "pandora-2.jpg",
       "pandora-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "pandora-3.jpg"
     ]
   },
@@ -417,7 +419,7 @@
       "pax-2.jpg",
       "pax-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "pax-4.jpg"
     ]
   },
@@ -435,7 +437,7 @@
       "raleigh-2.jpg",
       "raleigh-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Ranger",
@@ -451,7 +453,7 @@
       "ranger-2.jpg",
       "ranger-4.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "ranger-3.jpg"
     ]
   },
@@ -468,7 +470,7 @@
       "reese-2.jpg",
       "reese-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "reese-4.jpg"
     ]
   },
@@ -486,7 +488,7 @@
       "sandy-2.jpg",
       "sandy-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "sandy-4.jpg"
     ]
   },
@@ -504,7 +506,7 @@
       "samantha-2.jpg",
       "samantha-3.jpg"
     ],
-    "extras": []
+    "animalSigns": []
   },
   {
     "name": "Santini",
@@ -520,7 +522,7 @@
       "santini-2.jpg",
       "santini-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "santini-4.jpg"
     ]
   },
@@ -538,7 +540,7 @@
       "summer-2.jpg",
       "summer-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "summer-4.jpg"
     ]
   },
@@ -555,7 +557,9 @@
       "talon-2.jpg",
       "talon-3.jpg"
     ],
-    "extras": []
+    "animalSigns": [
+      "talon-4.jpg"
+    ]
   },
   {
     "name": "Tanner",
@@ -570,7 +574,7 @@
       "tanner-2.jpg",
       "tanner-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "tanner-4.jpg"
     ]
   },
@@ -588,7 +592,7 @@
       "tursi-2.jpg",
       "tursi-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "tursi-4.jpg"
     ]
   },
@@ -605,7 +609,7 @@
       "windley-2.jpg",
       "windley-3.jpg"
     ],
-    "extras": [
+    "animalSigns": [
       "windley-4.jpg"
     ]
   }

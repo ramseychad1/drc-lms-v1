@@ -14,7 +14,8 @@ export const api = {
   dolphins: () => request('/dolphins'),
   dolphin: (slug) => request(`/dolphins/${slug}`),
   sourcePages: () => request('/source-pages'),
-  startQuiz: (count) => request('/quizzes', { method: 'POST', body: JSON.stringify({ count }) }),
+  startQuiz: (count, mode) =>
+    request('/quizzes', { method: 'POST', body: JSON.stringify({ count, mode }) }),
   answer: (quizId, questionId, answer) =>
     request(`/quizzes/${quizId}/questions/${questionId}/answer`, {
       method: 'POST',

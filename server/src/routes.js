@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { pool, query } from './db.js';
-import { buildQuestions } from './quiz.js';
+import { buildQuestions, MODES } from './quiz.js';
 
 export const api = Router();
 
@@ -11,8 +11,8 @@ const photoUrls = (filenames) =>
 
 const DOLPHIN_SELECT = `
   SELECT d.*,
-         COALESCE(array_agg(p.filename ORDER BY p.position) FILTER (WHERE NOT p.is_extra), '{}') AS photos,
-         COALESCE(array_agg(p.filename ORDER BY p.position) FILTER (WHERE p.is_extra), '{}') AS extras
+         COALESCE(array_agg(p.filename ORDER BY p.position) FILTER (WHERE p.kind = 'photo'), '{}') AS photos,
+         COALESCE(array_agg(p.filename ORDER BY p.position) FILTER (WHERE p.kind = 'animal-sign'), '{}') AS signs
     FROM dolphins d
     LEFT JOIN dolphin_photos p ON p.dolphin_id = d.id`;
 
@@ -28,7 +28,7 @@ const toDolphin = (r) => ({
   rescued: r.rescued,
   definingFeatures: r.defining_features,
   photos: photoUrls(r.photos),
-  extras: photoUrls(r.extras),
+  animalSigns: photoUrls(r.signs),
 });
 
 // ---- Content -------------------------------------------------------------
@@ -58,11 +58,14 @@ api.get('/source-pages', wrap(async (_req, res) => {
 
 // ---- Quiz ----------------------------------------------------------------
 
+const IMAGE_KIND = { photos: 'photo', 'animal-sign': 'animal-sign' };
+
 const publicQuestion = async (q) => {
   const out = { id: q.id, position: q.position, field: q.field, prompt: q.prompt, options: q.options };
-  if (q.field === 'photos') {
+  if (IMAGE_KIND[q.field]) {
     const { rows } = await query(
-      'SELECT filename FROM dolphin_photos WHERE dolphin_id = $1 AND NOT is_extra ORDER BY position', [q.dolphin_id]);
+      'SELECT filename FROM dolphin_photos WHERE dolphin_id = $1 AND kind = $2 ORDER BY position',
+      [q.dolphin_id, IMAGE_KIND[q.field]]);
     out.photos = photoUrls(rows.map((r) => r.filename));
   }
   return out;
@@ -70,20 +73,24 @@ const publicQuestion = async (q) => {
 
 api.post('/quizzes', wrap(async (req, res) => {
   const { rows: dolphins } = await query(`
-    SELECT d.*, (SELECT count(*)::int FROM dolphin_photos p WHERE p.dolphin_id = d.id AND NOT p.is_extra) AS photo_count
+    SELECT d.*,
+           (SELECT count(*)::int FROM dolphin_photos p WHERE p.dolphin_id = d.id AND p.kind = 'photo') AS photo_count,
+           (SELECT count(*)::int FROM dolphin_photos p WHERE p.dolphin_id = d.id AND p.kind = 'animal-sign') AS sign_count
       FROM dolphins d`);
+  const mode = req.body?.mode ?? 'all';
+  if (!MODES.includes(mode)) return res.status(400).json({ error: `mode must be one of ${MODES.join(', ')}` });
   const requested = Number.parseInt(req.body?.count, 10);
   if (!Number.isInteger(requested) || requested < 1) {
     return res.status(400).json({ error: 'count must be a positive integer' });
   }
-  const count = Math.min(requested, dolphins.length);
-  const questions = buildQuestions(dolphins, count);
+  const questions = buildQuestions(dolphins, requested, mode);
+  const count = questions.length;
 
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
     const { rows: [quiz] } = await client.query(
-      'INSERT INTO quizzes (total_questions) VALUES ($1) RETURNING id, created_at', [count]);
+      'INSERT INTO quizzes (total_questions, mode) VALUES ($1, $2) RETURNING id, created_at', [count, mode]);
     const saved = [];
     for (const [i, q] of questions.entries()) {
       const { rows: [row] } = await client.query(
@@ -95,6 +102,7 @@ api.post('/quizzes', wrap(async (req, res) => {
     await client.query('COMMIT');
     res.status(201).json({
       id: quiz.id,
+      mode,
       total: count,
       questions: await Promise.all(saved.map(publicQuestion)),
     });
@@ -147,6 +155,7 @@ api.post('/quizzes/:id/questions/:qid/answer', wrap(async (req, res) => {
 
 const summarize = (r) => ({
   id: r.id,
+  mode: r.mode,
   createdAt: r.created_at,
   completedAt: r.completed_at,
   total: r.total_questions,
@@ -168,7 +177,8 @@ api.get('/quizzes/:id', wrap(async (req, res) => {
   const { rows } = await query(
     `SELECT qq.*, d.slug, d.name AS dolphin_name, d.page,
             COALESCE((SELECT array_agg(p.filename ORDER BY p.position)
-                        FROM dolphin_photos p WHERE p.dolphin_id = d.id AND NOT p.is_extra), '{}') AS photos
+                        FROM dolphin_photos p WHERE p.dolphin_id = d.id
+                         AND p.kind = CASE qq.field WHEN 'animal-sign' THEN 'animal-sign' ELSE 'photo' END), '{}') AS photos
        FROM quiz_questions qq JOIN dolphins d ON d.id = qq.dolphin_id
       WHERE qq.quiz_id = $1 ORDER BY qq.position`, [quiz.id]);
   res.json({
@@ -181,7 +191,7 @@ api.get('/quizzes/:id', wrap(async (req, res) => {
       correctAnswer: q.correct_answer,
       isCorrect: q.is_correct,
       dolphin: { slug: q.slug, name: q.dolphin_name, page: q.page },
-      photos: q.field === 'photos' ? photoUrls(q.photos) : undefined,
+      photos: IMAGE_KIND[q.field] ? photoUrls(q.photos) : undefined,
     })),
   });
 }));

@@ -10,7 +10,7 @@ export default function ReviewList({ questions }) {
             <span className="mark" aria-label={q.isCorrect ? 'Correct' : 'Incorrect'}>{q.isCorrect ? '✓' : '✗'}</span>
             <strong>{q.prompt}</strong>
           </div>
-          {q.photos && <PhotoGallery photos={q.photos} name={q.dolphin.name} />}
+          {q.photos && <PhotoGallery photos={q.photos} name={q.dolphin.name} whole={q.field === 'animal-sign'} />}
           <p>Your answer: <span>{q.selectedAnswer}</span></p>
           {!q.isCorrect && <p>Correct answer: <b>{q.correctAnswer}</b></p>}
           <p className="review-links">

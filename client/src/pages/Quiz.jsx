@@ -13,7 +13,9 @@ const verdict = (pct) =>
 
 export default function Quiz() {
   const dolphins = useLoad(api.dolphins, []);
-  const max = dolphins.data?.length ?? 36;
+  const [mode, setMode] = useState('all');
+  const signCount = dolphins.data?.filter((d) => d.animalSigns.length > 0).length ?? 25;
+  const max = mode === 'animal-sign' ? signCount : dolphins.data?.length ?? 36;
 
   const [count, setCount] = useState(10);
   const [quiz, setQuiz] = useState(null);
@@ -29,7 +31,7 @@ export default function Quiz() {
   const start = async () => {
     setBusy(true); setError(null);
     try {
-      const q = await api.startQuiz(Math.min(count, max));
+      const q = await api.startQuiz(Math.min(count, max), mode);
       setQuiz(q); setIndex(0); setFeedback(null); setPicked(null);
       setTally({ correct: 0, answered: 0 }); setFinished(null);
     } catch (e) { setError(e); } finally { setBusy(false); }
@@ -106,7 +108,7 @@ export default function Quiz() {
 
         <section className="q-card">
           <h1 className="q-prompt">{question.prompt}</h1>
-          {question.photos && <PhotoGallery photos={question.photos} name="Mystery animal" />}
+          {question.photos && <PhotoGallery photos={question.photos} name="Mystery animal" whole={question.field === 'animal-sign'} />}
           <div className="options" role="group" aria-label="Answer choices">
             {question.options.map((opt, i) => {
               let cls = 'option';
@@ -153,16 +155,25 @@ export default function Quiz() {
         <h1>Family Quiz</h1>
         <p className="lede">
           Each question picks one fact — birth date, parents, origin, offspring, defining features, or a
-          set of photos — from a different family member. Pick how many questions you want.
+          set of photos — from a different family member. Or practice just the animal signs.
         </p>
       </div>
       <div className="setup-card">
-        <label htmlFor="count">Number of questions: <b>{count}</b></label>
+        <div className="mode-switch" role="group" aria-label="Quiz type">
+          <button className={mode === 'all' ? 'on' : ''} aria-pressed={mode === 'all'} onClick={() => setMode('all')}>
+            <b>All topics</b><small>Facts and photos, one per animal</small>
+          </button>
+          <button className={mode === 'animal-sign' ? 'on' : ''} aria-pressed={mode === 'animal-sign'}
+            onClick={() => setMode('animal-sign')}>
+            <b>Animal signs only</b><small>Which animal does each sign belong to?</small>
+          </button>
+        </div>
+        <label htmlFor="count">Number of questions: <b>{Math.min(count, max)}</b></label>
         <input id="count" type="range" min="1" max={max} value={Math.min(count, max)}
           onChange={(e) => setCount(Number(e.target.value))} />
         <div className="presets">
           {presets.map((n) => (
-            <button key={n} className={`chip ${count === n ? 'on' : ''}`} onClick={() => setCount(n)}>
+            <button key={n} className={`chip ${Math.min(count, max) === n ? 'on' : ''}`} onClick={() => setCount(n)}>
               {n === max ? `All (${n})` : n}
             </button>
           ))}

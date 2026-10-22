@@ -45,12 +45,22 @@ export const FIELDS = {
     answer: (d) => (d.photo_count > 0 ? d.name : null),
     prompt: () => 'Which family member is shown in these photos?',
   },
+  // Each sign belongs to exactly one animal: the one on the same slide.
+  'animal-sign': {
+    answer: (d) => (d.sign_count > 0 ? d.name : null),
+    prompt: () => 'Which family member does this animal sign belong to?',
+  },
 };
 
-export function buildQuestions(dolphins, count) {
-  const chosen = shuffle(dolphins).slice(0, count);
+export const MODES = ['all', 'animal-sign'];
+
+// mode 'all': one random fact per animal (signs excluded). mode 'animal-sign': signs only.
+export function buildQuestions(dolphins, count, mode = 'all') {
+  const fields = Object.keys(FIELDS).filter((f) => (mode === 'animal-sign' ? f === 'animal-sign' : f !== 'animal-sign'));
+  const eligible = dolphins.filter((d) => fields.some((f) => FIELDS[f].answer(d)));
+  const chosen = shuffle(eligible).slice(0, count);
   return chosen.map((d) => {
-    const available = Object.keys(FIELDS).filter((f) => FIELDS[f].answer(d));
+    const available = fields.filter((f) => FIELDS[f].answer(d));
     const field = available[Math.floor(Math.random() * available.length)];
     const correct = FIELDS[field].answer(d);
 
