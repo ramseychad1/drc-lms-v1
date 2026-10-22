@@ -27,6 +27,7 @@ const toDolphin = (r) => ({
   offspring: r.offspring,
   rescued: r.rescued,
   definingFeatures: r.defining_features,
+  headshot: r.headshot ? photoUrls([r.headshot])[0] : null,
   photos: photoUrls(r.photos),
   animalSigns: photoUrls(r.signs),
 });

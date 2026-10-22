@@ -75,8 +75,8 @@ function Node({ d, focus, compact, onFocus }) {
   return (
     <div className={`tree-node ${focus ? 'focus' : ''} ${compact ? 'compact' : ''}`}>
       <Link to={`/family/${d.slug}`} className="tree-link">
-        {d.photos[0]
-          ? <img className="tree-thumb" src={d.photos[0].thumb} alt="" loading="lazy" />
+        {(d.headshot ?? d.photos[0])
+          ? <img className="tree-thumb" src={(d.headshot ?? d.photos[0]).thumb} alt="" loading="lazy" />
           : <div className="tree-thumb placeholder" aria-hidden="true">🐬</div>}
         <span className="tree-name">{d.name}</span>
       </Link>

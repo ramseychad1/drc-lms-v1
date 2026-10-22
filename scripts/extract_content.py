@@ -41,6 +41,10 @@ FIELD_KEYS = {
 }
 
 
+# Hand-picked face photo per animal (used as the family-tree thumbnail); keyed by slug -> photo number.
+HEADSHOTS = {'ace': 1, 'aleta': 3, 'atocha': 3, 'baby': 1, 'bowie': 3, 'cacica': 3, 'calusa': 3, 'cane': 1, 'cayo': 4, 'clyde': 1, 'delta': 4, 'diamond': 1, 'diva': 4, 'flagler': 4, 'gambit': 4, 'gypsi': 4, 'jax': 1, 'j-j': 1, 'lina': 1, 'louie': 4, 'luna': 4, 'merina': 1, 'morada': 1, 'pandora': 2, 'pax': 2, 'raleigh': 3, 'ranger': 1, 'reese': 3, 'sandy': 1, 'samantha': 1, 'santini': 2, 'summer': 1, 'talon': 3, 'tanner': 1, 'tursi': 2, 'windley': 3}
+
+
 def run(*args):
     return subprocess.run(args, check=True, capture_output=True, text=True).stdout
 
@@ -148,6 +152,7 @@ def main():
                 fit(im, 1600).save(OUT / "photos" / fname, quality=84, optimize=True)
                 fit(im, 480).save(OUT / "thumbs" / fname, quality=80, optimize=True)
                 (d["animalSigns"] if w * h < SIGN_MAX_AREA else d["photos"]).append(fname)
+            d["headshot"] = f"{d['slug']}-{HEADSHOTS[d['slug']]}.jpg"
             dolphins.append(d)
 
     DATA.parent.mkdir(exist_ok=True)

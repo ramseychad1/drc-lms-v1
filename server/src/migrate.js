@@ -56,6 +56,9 @@ ALTER TABLE dolphin_photos DROP COLUMN IF EXISTS is_extra;
 -- mode: 'all' (mixed facts) or 'animal-sign' (signs only)
 ALTER TABLE quizzes ADD COLUMN IF NOT EXISTS mode TEXT NOT NULL DEFAULT 'all';
 
+-- headshot: filename of the face photo used as the animal's thumbnail in the family tree
+ALTER TABLE dolphins ADD COLUMN IF NOT EXISTS headshot TEXT;
+
 CREATE INDEX IF NOT EXISTS quizzes_completed_idx ON quizzes (completed_at DESC);
 `;
 
@@ -69,16 +72,16 @@ export async function migrate() {
     for (const d of dolphins) {
       const { rows } = await client.query(
         `INSERT INTO dolphins
-           (slug, name, page, born_at_drc, dob, parents, place_of_origin, offspring, rescued, defining_features)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+           (slug, name, page, born_at_drc, dob, parents, place_of_origin, offspring, rescued, defining_features, headshot)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
          ON CONFLICT (slug) DO UPDATE SET
            name = EXCLUDED.name, page = EXCLUDED.page, born_at_drc = EXCLUDED.born_at_drc,
            dob = EXCLUDED.dob, parents = EXCLUDED.parents, place_of_origin = EXCLUDED.place_of_origin,
            offspring = EXCLUDED.offspring, rescued = EXCLUDED.rescued,
-           defining_features = EXCLUDED.defining_features
+           defining_features = EXCLUDED.defining_features, headshot = EXCLUDED.headshot
          RETURNING id`,
         [d.slug, d.name, d.page, d.bornAtDrc, d.dob ?? null, d.parents ?? null,
-         d.placeOfOrigin ?? null, d.offspring ?? null, d.rescued ?? null, d.definingFeatures ?? null],
+         d.placeOfOrigin ?? null, d.offspring ?? null, d.rescued ?? null, d.definingFeatures ?? null, d.headshot ?? null],
       );
       const id = rows[0].id;
       await client.query('DELETE FROM dolphin_photos WHERE dolphin_id = $1', [id]);

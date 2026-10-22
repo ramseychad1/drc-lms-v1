@@ -13,7 +13,8 @@
       "ace-2.jpg",
       "ace-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "ace-1.jpg"
   },
   {
     "name": "Aleta",
@@ -31,7 +32,8 @@
     ],
     "animalSigns": [
       "aleta-4.jpg"
-    ]
+    ],
+    "headshot": "aleta-3.jpg"
   },
   {
     "name": "Atocha",
@@ -48,7 +50,8 @@
     ],
     "animalSigns": [
       "atocha-4.jpg"
-    ]
+    ],
+    "headshot": "atocha-3.jpg"
   },
   {
     "name": "Baby",
@@ -64,7 +67,8 @@
       "baby-2.jpg",
       "baby-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "baby-1.jpg"
   },
   {
     "name": "Bowie",
@@ -81,7 +85,8 @@
     ],
     "animalSigns": [
       "bowie-1.jpg"
-    ]
+    ],
+    "headshot": "bowie-3.jpg"
   },
   {
     "name": "Cacica",
@@ -98,7 +103,8 @@
     ],
     "animalSigns": [
       "cacica-4.jpg"
-    ]
+    ],
+    "headshot": "cacica-3.jpg"
   },
   {
     "name": "Calusa",
@@ -116,7 +122,8 @@
     ],
     "animalSigns": [
       "calusa-1.jpg"
-    ]
+    ],
+    "headshot": "calusa-3.jpg"
   },
   {
     "name": "Cane",
@@ -132,7 +139,8 @@
       "cane-2.jpg",
       "cane-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "cane-1.jpg"
   },
   {
     "name": "Cayo",
@@ -149,7 +157,8 @@
     ],
     "animalSigns": [
       "cayo-3.jpg"
-    ]
+    ],
+    "headshot": "cayo-4.jpg"
   },
   {
     "name": "Clyde",
@@ -165,7 +174,8 @@
       "clyde-2.jpg",
       "clyde-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "clyde-1.jpg"
   },
   {
     "name": "Delta",
@@ -182,7 +192,8 @@
     ],
     "animalSigns": [
       "delta-3.jpg"
-    ]
+    ],
+    "headshot": "delta-4.jpg"
   },
   {
     "name": "Diamond",
@@ -198,7 +209,8 @@
       "diamond-2.jpg",
       "diamond-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "diamond-1.jpg"
   },
   {
     "name": "Diva",
@@ -215,7 +227,8 @@
     ],
     "animalSigns": [
       "diva-3.jpg"
-    ]
+    ],
+    "headshot": "diva-4.jpg"
   },
   {
     "name": "Flagler",
@@ -232,7 +245,8 @@
     ],
     "animalSigns": [
       "flagler-3.jpg"
-    ]
+    ],
+    "headshot": "flagler-4.jpg"
   },
   {
     "name": "Gambit",
@@ -249,7 +263,8 @@
     ],
     "animalSigns": [
       "gambit-3.jpg"
-    ]
+    ],
+    "headshot": "gambit-4.jpg"
   },
   {
     "name": "Gypsi",
@@ -266,7 +281,8 @@
     ],
     "animalSigns": [
       "gypsi-3.jpg"
-    ]
+    ],
+    "headshot": "gypsi-4.jpg"
   },
   {
     "name": "Jax",
@@ -284,7 +300,8 @@
     ],
     "animalSigns": [
       "jax-4.jpg"
-    ]
+    ],
+    "headshot": "jax-1.jpg"
   },
   {
     "name": "J.J.",
@@ -298,7 +315,8 @@
     "photos": [
       "j-j-1.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "j-j-1.jpg"
   },
   {
     "name": "Lina",
@@ -315,7 +333,8 @@
       "lina-2.jpg",
       "lina-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "lina-1.jpg"
   },
   {
     "name": "Louie",
@@ -333,7 +352,8 @@
     ],
     "animalSigns": [
       "louie-3.jpg"
-    ]
+    ],
+    "headshot": "louie-4.jpg"
   },
   {
     "name": "Luna",
@@ -350,7 +370,8 @@
     ],
     "animalSigns": [
       "luna-3.jpg"
-    ]
+    ],
+    "headshot": "luna-4.jpg"
   },
   {
     "name": "Merina",
@@ -368,7 +389,8 @@
     ],
     "animalSigns": [
       "merina-4.jpg"
-    ]
+    ],
+    "headshot": "merina-1.jpg"
   },
   {
     "name": "Morada",
@@ -385,7 +407,8 @@
     ],
     "animalSigns": [
       "morada-4.jpg"
-    ]
+    ],
+    "headshot": "morada-1.jpg"
   },
   {
     "name": "Pandora",
@@ -403,7 +426,8 @@
     ],
     "animalSigns": [
       "pandora-3.jpg"
-    ]
+    ],
+    "headshot": "pandora-2.jpg"
   },
   {
     "name": "Pax",
@@ -421,7 +445,8 @@
     ],
     "animalSigns": [
       "pax-4.jpg"
-    ]
+    ],
+    "headshot": "pax-2.jpg"
   },
   {
     "name": "Raleigh",
@@ -437,7 +462,8 @@
       "raleigh-2.jpg",
       "raleigh-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "raleigh-3.jpg"
   },
   {
     "name": "Ranger",
@@ -455,7 +481,8 @@
     ],
     "animalSigns": [
       "ranger-3.jpg"
-    ]
+    ],
+    "headshot": "ranger-1.jpg"
   },
   {
     "name": "Reese",
@@ -472,7 +499,8 @@
     ],
     "animalSigns": [
       "reese-4.jpg"
-    ]
+    ],
+    "headshot": "reese-3.jpg"
   },
   {
     "name": "Sandy",
@@ -490,7 +518,8 @@
     ],
     "animalSigns": [
       "sandy-4.jpg"
-    ]
+    ],
+    "headshot": "sandy-1.jpg"
   },
   {
     "name": "Samantha",
@@ -506,7 +535,8 @@
       "samantha-2.jpg",
       "samantha-3.jpg"
     ],
-    "animalSigns": []
+    "animalSigns": [],
+    "headshot": "samantha-1.jpg"
   },
   {
     "name": "Santini",
@@ -524,7 +554,8 @@
     ],
     "animalSigns": [
       "santini-4.jpg"
-    ]
+    ],
+    "headshot": "santini-2.jpg"
   },
   {
     "name": "Summer",
@@ -542,7 +573,8 @@
     ],
     "animalSigns": [
       "summer-4.jpg"
-    ]
+    ],
+    "headshot": "summer-1.jpg"
   },
   {
     "name": "Talon",
@@ -559,7 +591,8 @@
     ],
     "animalSigns": [
       "talon-4.jpg"
-    ]
+    ],
+    "headshot": "talon-3.jpg"
   },
   {
     "name": "Tanner",
@@ -576,7 +609,8 @@
     ],
     "animalSigns": [
       "tanner-4.jpg"
-    ]
+    ],
+    "headshot": "tanner-1.jpg"
   },
   {
     "name": "Tursi",
@@ -594,7 +628,8 @@
     ],
     "animalSigns": [
       "tursi-4.jpg"
-    ]
+    ],
+    "headshot": "tursi-2.jpg"
   },
   {
     "name": "Windley",
@@ -611,6 +646,7 @@
     ],
     "animalSigns": [
       "windley-4.jpg"
-    ]
+    ],
+    "headshot": "windley-3.jpg"
   }
 ]
