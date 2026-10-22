@@ -43,7 +43,7 @@ export const FIELDS = {
   },
   photos: {
     answer: (d) => (d.photo_count > 0 ? d.name : null),
-    prompt: () => 'Which dolphin is shown in these photos?',
+    prompt: () => 'Which family member is shown in these photos?',
   },
 };
 

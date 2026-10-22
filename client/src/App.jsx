@@ -8,15 +8,15 @@ import QuizReview from './pages/QuizReview.jsx';
 
 export default function App() {
   const { pathname } = useLocation();
-  const dolphinsActive = pathname === '/' || pathname.startsWith('/dolphins');
+  const dolphinsActive = pathname === '/' || pathname.startsWith('/family');
   return (
     <>
       <header className="topbar">
         <NavLink to="/" className="brand">
-          <span aria-hidden="true">🐬</span> Dolphin IDs
+          <span aria-hidden="true">🐬</span> DRC Animal Family
         </NavLink>
         <nav aria-label="Main">
-          <NavLink to="/" className={dolphinsActive ? 'active' : ''}>Dolphins</NavLink>
+          <NavLink to="/" className={dolphinsActive ? 'active' : ''}>Family</NavLink>
           <NavLink to="/source">Source Slides</NavLink>
           <NavLink to="/quiz">Quiz</NavLink>
           <NavLink to="/history">History</NavLink>
@@ -25,7 +25,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Library />} />
-          <Route path="/dolphins/:slug" element={<DolphinDetail />} />
+          <Route path="/family/:slug" element={<DolphinDetail />} />
           <Route path="/source" element={<Source />} />
           <Route path="/source/:page" element={<Source />} />
           <Route path="/quiz" element={<Quiz />} />

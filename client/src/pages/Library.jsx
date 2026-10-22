@@ -22,15 +22,15 @@ export default function Library() {
   return (
     <div className="page">
       <div className="page-head">
-        <h1>Dolphin Profiles</h1>
+        <h1>Meet the Family</h1>
         <p className="lede">
-          Every dolphin from the ID slideshow, indexed by name. Pick one to see the full profile and all of its photos.
+          Every animal in the DRC family, indexed by name. Pick one to see the full profile and all of its photos.
         </p>
       </div>
       <Status loading={loading} error={error}>
         <div className="toolbar">
           <input type="search" placeholder="Search by name, parents, features…" value={search}
-            onChange={(e) => setSearch(e.target.value)} aria-label="Search dolphins" />
+            onChange={(e) => setSearch(e.target.value)} aria-label="Search the family" />
           <span className="count">{filtered.length} of {data?.length}</span>
         </div>
         {!search && (
@@ -41,14 +41,14 @@ export default function Library() {
           </nav>
         )}
         {filtered.length === 0 ? (
-          <p className="empty">No dolphins match “{search}”.</p>
+          <p className="empty">No family members match “{search}”.</p>
         ) : (
           <ul className="card-grid">
             {filtered.map((d, i) => {
               const first = !search && (i === 0 || filtered[i - 1].name[0].toUpperCase() !== d.name[0].toUpperCase());
               return (
                 <li key={d.slug} id={first ? `letter-${d.name[0].toUpperCase()}` : undefined}>
-                  <Link to={`/dolphins/${d.slug}`} className="dolphin-card">
+                  <Link to={`/family/${d.slug}`} className="dolphin-card">
                     {d.photos[0] && <img src={d.photos[0].thumb} alt="" loading="lazy" />}
                     <div className="dolphin-card-body">
                       <h2>{d.name}</h2>

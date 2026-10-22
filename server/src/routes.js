@@ -40,7 +40,7 @@ api.get('/dolphins', wrap(async (_req, res) => {
 
 api.get('/dolphins/:slug', wrap(async (req, res) => {
   const { rows } = await query(`${DOLPHIN_SELECT} WHERE d.slug = $1 GROUP BY d.id`, [req.params.slug]);
-  if (!rows[0]) return res.status(404).json({ error: 'Dolphin not found' });
+  if (!rows[0]) return res.status(404).json({ error: 'Family member not found' });
   res.json(toDolphin(rows[0]));
 }));
 

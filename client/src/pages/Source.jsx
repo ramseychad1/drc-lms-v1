@@ -4,7 +4,7 @@ import { api } from '../api.js';
 import { useLoad } from '../hooks.js';
 import Status from '../components/Status.jsx';
 
-// Browse the original slides as images, one per page, indexed by dolphin name.
+// Browse the original slides as images, one per page, indexed by name.
 export default function Source() {
   const { page } = useParams();
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ export default function Source() {
                 <button className="btn secondary" onClick={() => setZoomed((z) => !z)}>
                   {zoomed ? 'Fit to screen' : 'Zoom'}
                 </button>
-                {slide.slug && <Link className="btn" to={`/dolphins/${slide.slug}`}>Open {slide.title}’s profile</Link>}
+                {slide.slug && <Link className="btn" to={`/family/${slide.slug}`}>Open {slide.title}’s profile</Link>}
               </div>
             </section>
           </div>

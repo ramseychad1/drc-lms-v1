@@ -1,11 +1,11 @@
-# Dolphin IDs — learning system
+# DRC Animal Family — learning system
 
-Full-stack study app built from `resources/Dolphin ID Slideshow.pptx - Google Slides.pdf`.
+Full-stack study app built from the DRC family slideshow, `resources/Dolphin ID Slideshow.pptx - Google Slides.pdf`.
 
-- **Dolphin profiles** — one page per dolphin, indexed A–Z with search; all facts plus every photo.
-- **Source slides** — the original PDF pages rendered as images, browsable by dolphin name; each profile links to its slide.
+- **Family profiles** — one page per animal, indexed A–Z with search; all facts plus every photo.
+- **Source slides** — the original PDF pages rendered as images, browsable by name; each profile links to its slide.
 - **Flashcard quiz** — choose 1–36 questions. Each question is one data point (birth date, parents, origin,
-  offspring, rescue date, defining features, or *all* photos of a dolphin on one card) from a different dolphin.
+  offspring, rescue date, defining features, or *all* photos of an animal on one card) from a different family member.
   Instant right/wrong feedback; final score with correct / incorrect / percent.
 - **History** — every completed quiz with date, score and a full question-by-question review.
 

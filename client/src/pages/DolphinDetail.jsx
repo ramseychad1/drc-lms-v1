@@ -28,15 +28,15 @@ export default function DolphinDetail() {
 
   return (
     <div className="page">
-      <Link to="/" className="back">← All dolphins</Link>
+      <Link to="/" className="back">← All family</Link>
       <Status loading={dolphin.loading} error={dolphin.error}>
         {d && (
           <>
             <div className="detail-head">
               <h1>{d.name}</h1>
               <div className="pager">
-                {prev ? <Link to={`/dolphins/${prev.slug}`}>← {prev.name}</Link> : <span />}
-                {next ? <Link to={`/dolphins/${next.slug}`}>{next.name} →</Link> : <span />}
+                {prev ? <Link to={`/family/${prev.slug}`}>← {prev.name}</Link> : <span />}
+                {next ? <Link to={`/family/${next.slug}`}>{next.name} →</Link> : <span />}
               </div>
             </div>
             <div className="detail-layout">

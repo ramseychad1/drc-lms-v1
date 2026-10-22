@@ -106,7 +106,7 @@ export default function Quiz() {
 
         <section className="q-card">
           <h1 className="q-prompt">{question.prompt}</h1>
-          {question.photos && <PhotoGallery photos={question.photos} name="Mystery dolphin" />}
+          {question.photos && <PhotoGallery photos={question.photos} name="Mystery animal" />}
           <div className="options" role="group" aria-label="Answer choices">
             {question.options.map((opt, i) => {
               let cls = 'option';
@@ -150,10 +150,10 @@ export default function Quiz() {
   return (
     <div className="page narrow">
       <div className="page-head">
-        <h1>Flashcard Quiz</h1>
+        <h1>Family Quiz</h1>
         <p className="lede">
           Each question picks one fact — birth date, parents, origin, offspring, defining features, or a
-          set of photos — from a different dolphin. Pick how many questions you want.
+          set of photos — from a different family member. Pick how many questions you want.
         </p>
       </div>
       <div className="setup-card">
