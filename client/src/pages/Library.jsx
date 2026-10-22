@@ -49,7 +49,7 @@ export default function Library() {
               return (
                 <li key={d.slug} id={first ? `letter-${d.name[0].toUpperCase()}` : undefined}>
                   <Link to={`/family/${d.slug}`} className="dolphin-card">
-                    {d.photos[0] && <img src={d.photos[0].thumb} alt="" loading="lazy" />}
+                    {(d.headshot ?? d.photos[0]) && <img src={(d.headshot ?? d.photos[0]).thumb} alt="" loading="lazy" />}
                     <div className="dolphin-card-body">
                       <h2>{d.name}</h2>
                       <p>{d.dob ? `Born ${d.dob}` : 'Birth date unknown'}</p>
