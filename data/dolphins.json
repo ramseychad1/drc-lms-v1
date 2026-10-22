@@ -1,0 +1,612 @@
+[
+  {
+    "name": "Ace",
+    "bornAtDrc": false,
+    "dob": "04/26/2005",
+    "parents": "Sandy (Gulf World)/Gregg (Gulf World)",
+    "placeOfOrigin": "MSQ",
+    "definingFeatures": "Light coloring/ mask pattern around his eyes",
+    "slug": "ace",
+    "page": 2,
+    "photos": [
+      "ace-1.jpg",
+      "ace-2.jpg",
+      "ace-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Aleta",
+    "bornAtDrc": true,
+    "dob": "12/21/1984",
+    "parents": "Misty/Delphi",
+    "offspring": "Delta & Diva",
+    "definingFeatures": "Hole in her tail fluke. Dorsal fin leans to the left. Slight bump on chin.",
+    "slug": "aleta",
+    "page": 3,
+    "photos": [
+      "aleta-1.jpg",
+      "aleta-2.jpg",
+      "aleta-3.jpg"
+    ],
+    "extras": [
+      "aleta-4.jpg"
+    ]
+  },
+  {
+    "name": "Atocha",
+    "bornAtDrc": true,
+    "dob": "02/21/2015",
+    "parents": "Pandora/Pacino (SeaWorld)",
+    "definingFeatures": "Curved sickle- shaped dorsal fin. Dark, wide eyes. Slender body shape.",
+    "slug": "atocha",
+    "page": 4,
+    "photos": [
+      "atocha-1.jpg",
+      "atocha-2.jpg",
+      "atocha-3.jpg"
+    ],
+    "extras": [
+      "atocha-4.jpg"
+    ]
+  },
+  {
+    "name": "Baby",
+    "bornAtDrc": false,
+    "dob": "02/23/1992",
+    "parents": "Born in California",
+    "placeOfOrigin": "MSQ",
+    "definingFeatures": "Cloudy eyes, darker face, lighter coloring around neck",
+    "slug": "baby",
+    "page": 5,
+    "photos": [
+      "baby-1.jpg",
+      "baby-2.jpg",
+      "baby-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Bowie",
+    "bornAtDrc": true,
+    "dob": "5/31/2022",
+    "parents": "Gypsi/Louie",
+    "definingFeatures": "Ruffled trailing edge of tail fluke",
+    "slug": "bowie",
+    "page": 6,
+    "photos": [
+      "bowie-2.jpg",
+      "bowie-3.jpg",
+      "bowie-4.jpg"
+    ],
+    "extras": [
+      "bowie-1.jpg"
+    ]
+  },
+  {
+    "name": "Cacica",
+    "bornAtDrc": true,
+    "dob": "02/24/2015",
+    "parents": "Calusa/Razzle (SeaWorld)",
+    "definingFeatures": "Back edge of dorsal fin is ruffled, like her mother's. Stout face & rostrum. Light coloration throughout her body.",
+    "slug": "cacica",
+    "page": 7,
+    "photos": [
+      "cacica-1.jpg",
+      "cacica-2.jpg",
+      "cacica-3.jpg"
+    ],
+    "extras": [
+      "cacica-4.jpg"
+    ]
+  },
+  {
+    "name": "Calusa",
+    "bornAtDrc": true,
+    "dob": "02/15/2001",
+    "parents": "Merina/Rainbow",
+    "offspring": "Cacica",
+    "definingFeatures": "Ruffled lasagna-shaped dorsal fin. Dark eyes & underbite.",
+    "slug": "calusa",
+    "page": 8,
+    "photos": [
+      "calusa-2.jpg",
+      "calusa-3.jpg",
+      "calusa-4.jpg"
+    ],
+    "extras": [
+      "calusa-1.jpg"
+    ]
+  },
+  {
+    "name": "Cane",
+    "bornAtDrc": false,
+    "dob": "05/15/2010",
+    "parents": "Sandy (Gulf World)/Gregg (Gulf World)",
+    "placeOfOrigin": "MSQ",
+    "definingFeatures": "Darker face, brown eyes",
+    "slug": "cane",
+    "page": 9,
+    "photos": [
+      "cane-1.jpg",
+      "cane-2.jpg",
+      "cane-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Cayo",
+    "bornAtDrc": true,
+    "dob": "12/13/2006",
+    "parents": "Merina/Noel (Miami Seaquarium)",
+    "definingFeatures": "Long, elegant rostrum. Flat melon & pink belly.",
+    "slug": "cayo",
+    "page": 10,
+    "photos": [
+      "cayo-1.jpg",
+      "cayo-2.jpg",
+      "cayo-4.jpg"
+    ],
+    "extras": [
+      "cayo-3.jpg"
+    ]
+  },
+  {
+    "name": "Clyde",
+    "bornAtDrc": false,
+    "dob": "07/13/2004",
+    "parents": "Born Sea World Orlando",
+    "placeOfOrigin": "MSQ",
+    "definingFeatures": "Lage, lighter fur around face",
+    "slug": "clyde",
+    "page": 11,
+    "photos": [
+      "clyde-1.jpg",
+      "clyde-2.jpg",
+      "clyde-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Delta",
+    "bornAtDrc": true,
+    "dob": "11/22/2009",
+    "parents": "Aleta/Kibby",
+    "definingFeatures": "Small crescent shaped dorsal fin. Big, brown eyes.",
+    "slug": "delta",
+    "page": 12,
+    "photos": [
+      "delta-1.jpg",
+      "delta-2.jpg",
+      "delta-4.jpg"
+    ],
+    "extras": [
+      "delta-3.jpg"
+    ]
+  },
+  {
+    "name": "Diamond",
+    "bornAtDrc": false,
+    "dob": "06/19/2012",
+    "parents": "Topaz/Rocco",
+    "placeOfOrigin": "SeaWorld",
+    "definingFeatures": "Very dark color when wet. Brown, wide-set eyes. Long, curved whiskers.",
+    "slug": "diamond",
+    "page": 13,
+    "photos": [
+      "diamond-1.jpg",
+      "diamond-2.jpg",
+      "diamond-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Diva",
+    "bornAtDrc": true,
+    "dob": "11/06/2013",
+    "parents": "Aleta/Gilly (SeaWorld)",
+    "definingFeatures": "Bump on chin. Short rostrum. Wrinkle above & below eyes.",
+    "slug": "diva",
+    "page": 14,
+    "photos": [
+      "diva-1.jpg",
+      "diva-2.jpg",
+      "diva-4.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Flagler",
+    "bornAtDrc": true,
+    "dob": "11/15/2010",
+    "parents": "Merina/Stormy (Theater of the Sea)",
+    "definingFeatures": "Back edge of dorsal fin is ruffled. Triangular dorsal.",
+    "slug": "flagler",
+    "page": 15,
+    "photos": [
+      "flagler-1.jpg",
+      "flagler-2.jpg",
+      "flagler-4.jpg"
+    ],
+    "extras": [
+      "flagler-3.jpg"
+    ]
+  },
+  {
+    "name": "Gambit",
+    "bornAtDrc": true,
+    "dob": "11/05/2010",
+    "parents": "Tursi/Kibby",
+    "definingFeatures": "Short rostrum. Sickle-shaped dorsal. Light color.",
+    "slug": "gambit",
+    "page": 16,
+    "photos": [
+      "gambit-1.jpg",
+      "gambit-2.jpg",
+      "gambit-4.jpg"
+    ],
+    "extras": [
+      "gambit-3.jpg"
+    ]
+  },
+  {
+    "name": "Gypsi",
+    "bornAtDrc": true,
+    "dob": "01/06/2007",
+    "parents": "Tursi/Rainbow",
+    "definingFeatures": "Darker coloring. Bandit mask around eyes. Significant underbite.",
+    "slug": "gypsi",
+    "page": 17,
+    "photos": [
+      "gypsi-1.jpg",
+      "gypsi-2.jpg",
+      "gypsi-4.jpg"
+    ],
+    "extras": [
+      "gypsi-3.jpg"
+    ]
+  },
+  {
+    "name": "Jax",
+    "bornAtDrc": false,
+    "dob": "01/08/2008",
+    "parents": "Unknown (rescue)",
+    "placeOfOrigin": "Jacksonville, FL (rescued)",
+    "definingFeatures": "Missing part of dorsal fin & right tail fluke. Crescent shaped scar on abdomen.",
+    "slug": "jax",
+    "page": 18,
+    "photos": [
+      "jax-1.jpg",
+      "jax-2.jpg",
+      "jax-3.jpg"
+    ],
+    "extras": [
+      "jax-4.jpg"
+    ]
+  },
+  {
+    "name": "J.J.",
+    "bornAtDrc": false,
+    "dob": "09/04/1976",
+    "parents": "Melissa (MSQ)/Flippy (MSQ)",
+    "placeOfOrigin": "MSQ",
+    "definingFeatures": "Worn down teeth, hump before dorsal fin, rostrum slightly upturned.",
+    "slug": "j-j",
+    "page": 19,
+    "photos": [
+      "j-j-1.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Lina",
+    "bornAtDrc": false,
+    "dob": "Unknown (est. 06/01/2009)",
+    "parents": "Unknown",
+    "placeOfOrigin": "California Central Coast",
+    "rescued": "08/18/2010",
+    "definingFeatures": "Petite, large brown eyes.",
+    "slug": "lina",
+    "page": 20,
+    "photos": [
+      "lina-1.jpg",
+      "lina-2.jpg",
+      "lina-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Louie",
+    "bornAtDrc": false,
+    "dob": "Unknown (approx. 2 yrs old in 2011)",
+    "placeOfOrigin": "Fourchon Beach, LA",
+    "rescued": "09/02/2010",
+    "definingFeatures": "Dark notch out of back of dorsal. Light, gray stripes from top of eyes to blowhole.",
+    "slug": "louie",
+    "page": 21,
+    "photos": [
+      "louie-1.jpg",
+      "louie-2.jpg",
+      "louie-4.jpg"
+    ],
+    "extras": [
+      "louie-3.jpg"
+    ]
+  },
+  {
+    "name": "Luna",
+    "bornAtDrc": true,
+    "dob": "01/29/2010",
+    "parents": "Pandora/A.J.",
+    "definingFeatures": "Short, robust rostrum. Triangular dorsal fin.",
+    "slug": "luna",
+    "page": 22,
+    "photos": [
+      "luna-1.jpg",
+      "luna-2.jpg",
+      "luna-4.jpg"
+    ],
+    "extras": [
+      "luna-3.jpg"
+    ]
+  },
+  {
+    "name": "Merina",
+    "bornAtDrc": true,
+    "dob": "11/21/1984",
+    "parents": "Bee/Delphi",
+    "offspring": "Pandora, Calusa, Cayo, Flagler & Windley",
+    "definingFeatures": "Can see whites of eyes. Long, elegant rostrum. Dark gray stripes along melon.",
+    "slug": "merina",
+    "page": 23,
+    "photos": [
+      "merina-1.jpg",
+      "merina-2.jpg",
+      "merina-3.jpg"
+    ],
+    "extras": [
+      "merina-4.jpg"
+    ]
+  },
+  {
+    "name": "Morada",
+    "bornAtDrc": true,
+    "dob": "11/03/2022",
+    "parents": "Cayo/Louie",
+    "definingFeatures": "Larger than Bowie, rostrum equal length on top and bottom",
+    "slug": "morada",
+    "page": 24,
+    "photos": [
+      "morada-1.jpg",
+      "morada-2.jpg",
+      "morada-3.jpg"
+    ],
+    "extras": [
+      "morada-4.jpg"
+    ]
+  },
+  {
+    "name": "Pandora",
+    "bornAtDrc": true,
+    "dob": "11/22/1997",
+    "parents": "Merina/Kibby",
+    "offspring": "Luna & Atocha",
+    "definingFeatures": "Notch in tail fluke. Very pink tummy.",
+    "slug": "pandora",
+    "page": 25,
+    "photos": [
+      "pandora-1.jpg",
+      "pandora-2.jpg",
+      "pandora-4.jpg"
+    ],
+    "extras": [
+      "pandora-3.jpg"
+    ]
+  },
+  {
+    "name": "Pax",
+    "bornAtDrc": true,
+    "dob": "03/30/1997",
+    "parents": "Tursi/Rainbow",
+    "offspring": "Brighton (DQuest Bermuda)",
+    "definingFeatures": "Dark gray. Underbite. Longest dolphin at DRC.",
+    "slug": "pax",
+    "page": 26,
+    "photos": [
+      "pax-1.jpg",
+      "pax-2.jpg",
+      "pax-3.jpg"
+    ],
+    "extras": [
+      "pax-4.jpg"
+    ]
+  },
+  {
+    "name": "Raleigh",
+    "bornAtDrc": false,
+    "dob": "07/20/2011",
+    "parents": "Rigby (MSQ)/Foxie (MSQ)",
+    "placeOfOrigin": "MSQ",
+    "definingFeatures": "Large, lighter fur around face",
+    "slug": "raleigh",
+    "page": 27,
+    "photos": [
+      "raleigh-1.jpg",
+      "raleigh-2.jpg",
+      "raleigh-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Ranger",
+    "bornAtDrc": false,
+    "dob": "Unknown (approx. 2 yrs old in 2022)",
+    "placeOfOrigin": "Goose Island, TX",
+    "rescued": "06/2021",
+    "definingFeatures": "Dorsal fin leans to the right.",
+    "slug": "ranger",
+    "page": 28,
+    "photos": [
+      "ranger-1.jpg",
+      "ranger-2.jpg",
+      "ranger-4.jpg"
+    ],
+    "extras": [
+      "ranger-3.jpg"
+    ]
+  },
+  {
+    "name": "Reese",
+    "bornAtDrc": true,
+    "dob": "12/3/2012",
+    "parents": "Santini, Brisby (Six Flags, CA)",
+    "definingFeatures": "Big, round eyes. Two notches out of dorsal. Blunt rostrum similar to Santini’s.",
+    "slug": "reese",
+    "page": 29,
+    "photos": [
+      "reese-1.jpg",
+      "reese-2.jpg",
+      "reese-3.jpg"
+    ],
+    "extras": [
+      "reese-4.jpg"
+    ]
+  },
+  {
+    "name": "Sandy",
+    "bornAtDrc": false,
+    "dob": "08/15/1979",
+    "parents": "Wendy (SeaWorld)/ Unknown",
+    "placeOfOrigin": "SeaWorld, FL",
+    "definingFeatures": "“Puzzle piece” notches out of dorsal fin. Very long.",
+    "slug": "sandy",
+    "page": 30,
+    "photos": [
+      "sandy-1.jpg",
+      "sandy-2.jpg",
+      "sandy-3.jpg"
+    ],
+    "extras": [
+      "sandy-4.jpg"
+    ]
+  },
+  {
+    "name": "Samantha",
+    "bornAtDrc": false,
+    "dob": "11/06/1986",
+    "parents": "Cathi (MSQ)/Papi (MSQ)",
+    "placeOfOrigin": "MSQ",
+    "definingFeatures": "Tag on top back of dorsal fin",
+    "slug": "samantha",
+    "page": 31,
+    "photos": [
+      "samantha-1.jpg",
+      "samantha-2.jpg",
+      "samantha-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Santini",
+    "bornAtDrc": true,
+    "dob": "11/29/1986",
+    "parents": "Theresa/Delphi",
+    "offspring": "Tanner & Reese",
+    "definingFeatures": "White scarring on dorsal fin. Large eyes Left eye has white opacity.",
+    "slug": "santini",
+    "page": 32,
+    "photos": [
+      "santini-1.jpg",
+      "santini-2.jpg",
+      "santini-3.jpg"
+    ],
+    "extras": [
+      "santini-4.jpg"
+    ]
+  },
+  {
+    "name": "Summer",
+    "bornAtDrc": false,
+    "dob": "Unknown (approx. 2 yrs old in 2015)",
+    "parents": "Unknown",
+    "placeOfOrigin": "Redington Beach, FL",
+    "definingFeatures": "Petite body. Long slender rostrum. Dark coloration & her spots begin to appear at age 3.",
+    "slug": "summer",
+    "page": 33,
+    "photos": [
+      "summer-1.jpg",
+      "summer-2.jpg",
+      "summer-3.jpg"
+    ],
+    "extras": [
+      "summer-4.jpg"
+    ]
+  },
+  {
+    "name": "Talon",
+    "bornAtDrc": true,
+    "dob": "06/08/1990",
+    "parents": "Tursi/Delphi",
+    "definingFeatures": "Large, dark eyes with some white showing. Pink belly, large head & long rostrum.",
+    "slug": "talon",
+    "page": 34,
+    "photos": [
+      "talon-1.jpg",
+      "talon-2.jpg",
+      "talon-3.jpg"
+    ],
+    "extras": []
+  },
+  {
+    "name": "Tanner",
+    "bornAtDrc": true,
+    "dob": "03/13/2002",
+    "parents": "Santini/A.J.",
+    "definingFeatures": "Small for an adult male. Slight bump under chin. Underbite.",
+    "slug": "tanner",
+    "page": 35,
+    "photos": [
+      "tanner-1.jpg",
+      "tanner-2.jpg",
+      "tanner-3.jpg"
+    ],
+    "extras": [
+      "tanner-4.jpg"
+    ]
+  },
+  {
+    "name": "Tursi",
+    "bornAtDrc": true,
+    "dob": "11/26/1973",
+    "parents": "Little Bit/Mr. Gipper",
+    "offspring": "Talon, Pax, Gypsi, Gambit",
+    "definingFeatures": "Recessed left eye. 2 parallel scars behind blowhole. White lower rostrum.",
+    "slug": "tursi",
+    "page": 36,
+    "photos": [
+      "tursi-1.jpg",
+      "tursi-2.jpg",
+      "tursi-3.jpg"
+    ],
+    "extras": [
+      "tursi-4.jpg"
+    ]
+  },
+  {
+    "name": "Windley",
+    "bornAtDrc": true,
+    "dob": "11/13/2013",
+    "parents": "Merina/Fathom (SeaWorld)",
+    "definingFeatures": "Long rostrum. Wide-set eyes & light grey complexion.",
+    "slug": "windley",
+    "page": 37,
+    "photos": [
+      "windley-1.jpg",
+      "windley-2.jpg",
+      "windley-3.jpg"
+    ],
+    "extras": [
+      "windley-4.jpg"
+    ]
+  }
+]

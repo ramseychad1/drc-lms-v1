@@ -1,0 +1,8 @@
+**/node_modules
+client/dist
+resources
+scripts
+.git
+.env
+.env.*
+docker-compose.yml

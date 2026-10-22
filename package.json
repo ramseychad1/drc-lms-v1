@@ -1,0 +1,13 @@
+{
+  "name": "drc-lms",
+  "private": true,
+  "scripts": {
+    "db": "docker compose up -d db",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server run start",
+    "extract": "/opt/anaconda3/bin/python3 -I scripts/extract_content.py",
+    "install:all": "npm --prefix server install && npm --prefix client install"
+  }
+}

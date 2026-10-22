@@ -1,0 +1,18 @@
+# Local Postgres for development. Port 5436 avoids clashing with other local DBs.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: dolphins
+      POSTGRES_PASSWORD: dolphins
+      POSTGRES_DB: dolphins
+    ports:
+      - "5436:5432"
+    volumes:
+      - dolphins-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dolphins"]
+      interval: 5s
+      retries: 10
+volumes:
+  dolphins-pgdata:
