@@ -1,6 +1,7 @@
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import Library from './pages/Library.jsx';
 import DolphinDetail from './pages/DolphinDetail.jsx';
+import FamilyTree from './pages/FamilyTree.jsx';
 import Source from './pages/Source.jsx';
 import Quiz from './pages/Quiz.jsx';
 import History from './pages/History.jsx';
@@ -17,6 +18,7 @@ export default function App() {
         </NavLink>
         <nav aria-label="Main">
           <NavLink to="/" className={dolphinsActive ? 'active' : ''}>Family</NavLink>
+          <NavLink to="/tree">Family Tree</NavLink>
           <NavLink to="/source">Source Slides</NavLink>
           <NavLink to="/quiz">Quiz</NavLink>
           <NavLink to="/history">History</NavLink>
@@ -26,6 +28,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Library />} />
           <Route path="/family/:slug" element={<DolphinDetail />} />
+          <Route path="/tree" element={<FamilyTree />} />
           <Route path="/source" element={<Source />} />
           <Route path="/source/:page" element={<Source />} />
           <Route path="/quiz" element={<Quiz />} />
