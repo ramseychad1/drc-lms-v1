@@ -50,13 +50,27 @@ export const FIELDS = {
     answer: (d) => (d.sign_count > 0 ? d.name : null),
     prompt: () => 'Which family member does this animal sign belong to?',
   },
+  // Reverse of 'animal-sign': given the name, pick the sign. Options are sign image filenames.
+  'pick-sign': {
+    answer: (d) => d.sign_file || null,
+    prompt: (d) => `Which animal sign belongs to ${d.name}?`,
+  },
 };
 
-export const MODES = ['all', 'animal-sign'];
+const SIGN_FIELDS = ['animal-sign', 'pick-sign'];
 
-// mode 'all': one random fact per animal (signs excluded). mode 'animal-sign': signs only.
+// Which fields each quiz mode draws from.
+const MODE_FIELDS = {
+  all: Object.keys(FIELDS).filter((f) => !SIGN_FIELDS.includes(f)),
+  'animal-sign': ['animal-sign'],
+  'pick-sign': ['pick-sign'],
+};
+
+export const MODES = Object.keys(MODE_FIELDS);
+
+// mode 'all': one random fact per animal (signs excluded). 'animal-sign': sign → name. 'pick-sign': name → sign.
 export function buildQuestions(dolphins, count, mode = 'all') {
-  const fields = Object.keys(FIELDS).filter((f) => (mode === 'animal-sign' ? f === 'animal-sign' : f !== 'animal-sign'));
+  const fields = MODE_FIELDS[mode];
   const eligible = dolphins.filter((d) => fields.some((f) => FIELDS[f].answer(d)));
   const chosen = shuffle(eligible).slice(0, count);
   return chosen.map((d) => {

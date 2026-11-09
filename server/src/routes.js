@@ -61,6 +61,11 @@ api.get('/source-pages', wrap(async (_req, res) => {
 
 const IMAGE_KIND = { photos: 'photo', 'animal-sign': 'animal-sign' };
 
+// Fields whose options (and answers) are image filenames rather than text.
+const IMAGE_OPTION_FIELDS = new Set(['pick-sign']);
+const optionImages = (field, filenames) =>
+  IMAGE_OPTION_FIELDS.has(field) ? Object.fromEntries(filenames.filter(Boolean).map((f) => [f, photoUrls([f])[0]])) : undefined;
+
 const publicQuestion = async (q) => {
   const out = { id: q.id, position: q.position, field: q.field, prompt: q.prompt, options: q.options };
   if (IMAGE_KIND[q.field]) {
@@ -69,6 +74,7 @@ const publicQuestion = async (q) => {
       [q.dolphin_id, IMAGE_KIND[q.field]]);
     out.photos = photoUrls(rows.map((r) => r.filename));
   }
+  out.optionImages = optionImages(q.field, q.options);
   return out;
 };
 
@@ -76,7 +82,9 @@ api.post('/quizzes', wrap(async (req, res) => {
   const { rows: dolphins } = await query(`
     SELECT d.*,
            (SELECT count(*)::int FROM dolphin_photos p WHERE p.dolphin_id = d.id AND p.kind = 'photo') AS photo_count,
-           (SELECT count(*)::int FROM dolphin_photos p WHERE p.dolphin_id = d.id AND p.kind = 'animal-sign') AS sign_count
+           (SELECT count(*)::int FROM dolphin_photos p WHERE p.dolphin_id = d.id AND p.kind = 'animal-sign') AS sign_count,
+           (SELECT p.filename FROM dolphin_photos p WHERE p.dolphin_id = d.id AND p.kind = 'animal-sign'
+             ORDER BY p.position LIMIT 1) AS sign_file
       FROM dolphins d`);
   const mode = req.body?.mode ?? 'all';
   if (!MODES.includes(mode)) return res.status(400).json({ error: `mode must be one of ${MODES.join(', ')}` });
@@ -193,6 +201,7 @@ api.get('/quizzes/:id', wrap(async (req, res) => {
       isCorrect: q.is_correct,
       dolphin: { slug: q.slug, name: q.dolphin_name, page: q.page },
       photos: IMAGE_KIND[q.field] ? photoUrls(q.photos) : undefined,
+      optionImages: optionImages(q.field, [q.selected_answer, q.correct_answer]),
     })),
   });
 }));

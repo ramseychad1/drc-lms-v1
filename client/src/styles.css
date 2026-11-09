@@ -282,7 +282,7 @@ td.wrong { color: var(--bad); font-weight: 600; }
 .gallery.whole { grid-template-columns: minmax(0, 320px); }
 .gallery.whole .gallery-item img { aspect-ratio: 1 / 1; object-fit: contain; background: var(--surface-2); }
 .review .gallery.whole { max-width: 240px; }
-.mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mode-switch { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .mode-switch button {
   text-align: left; padding: 12px 14px; border-radius: 10px;
   border: 2px solid var(--border); background: var(--surface); display: grid; gap: 2px;
@@ -350,3 +350,18 @@ td.wrong { color: var(--bad); font-weight: 600; }
 .loners { margin-top: 28px; }
 .loners .tree-row::before { display: none; }
 .loners .tree-row { padding-top: 0; }
+
+/* Pick-the-sign: answer choices are pictures */
+.options.image-options { grid-template-columns: repeat(2, 1fr); }
+.image-options .option { flex-direction: column; align-items: stretch; padding: 10px; position: relative; }
+.image-options .option kbd { position: absolute; top: 8px; left: 8px; }
+.image-options .option img {
+  width: 100%; aspect-ratio: 1 / 1; object-fit: contain; border-radius: 6px; background: var(--surface-2);
+}
+.review-signs { display: flex; gap: 12px; flex-wrap: wrap; }
+.review-signs figure { margin: 0; display: grid; gap: 4px; width: 140px; }
+.review-signs img {
+  width: 100%; aspect-ratio: 1 / 1; object-fit: contain; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface-2);
+}
+.review-signs figcaption { font-size: 0.85rem; color: var(--muted); }

@@ -3,6 +3,8 @@ import { api } from '../api.js';
 import { formatDate, useLoad } from '../hooks.js';
 import Status from '../components/Status.jsx';
 
+const MODE_LABELS = { all: 'All topics', 'animal-sign': 'Animal signs', 'pick-sign': 'Pick the sign' };
+
 export default function History() {
   const { data, error, loading } = useLoad(api.quizzes, []);
   const avg = data?.length ? Math.round(data.reduce((s, q) => s + q.percent, 0) / data.length) : 0;
@@ -33,7 +35,7 @@ export default function History() {
                   {data?.map((q) => (
                     <tr key={q.id}>
                       <td>{formatDate(q.completedAt)}</td>
-                      <td><span className="mode-tag">{q.mode === 'animal-sign' ? 'Animal signs' : 'All topics'}</span></td>
+                      <td><span className="mode-tag">{MODE_LABELS[q.mode] ?? 'All topics'}</span></td>
                       <td>{q.total}</td>
                       <td className="right">{q.correct}</td>
                       <td className="wrong">{q.incorrect}</td>

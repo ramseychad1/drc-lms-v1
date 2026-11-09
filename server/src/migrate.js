@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS quiz_questions (
 -- kind: 'photo' or 'animal-sign' (the symbol shown on the animal's slide). Rows are reloaded on every start.
 ALTER TABLE dolphin_photos ADD COLUMN IF NOT EXISTS kind TEXT NOT NULL DEFAULT 'photo';
 ALTER TABLE dolphin_photos DROP COLUMN IF EXISTS is_extra;
--- mode: 'all' (mixed facts) or 'animal-sign' (signs only)
+-- mode: 'all' (mixed facts), 'animal-sign' (sign → name) or 'pick-sign' (name → sign)
 ALTER TABLE quizzes ADD COLUMN IF NOT EXISTS mode TEXT NOT NULL DEFAULT 'all';
 
 -- headshot: filename of the face photo used as the animal's thumbnail in the family tree

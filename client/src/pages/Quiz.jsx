@@ -15,7 +15,7 @@ export default function Quiz() {
   const dolphins = useLoad(api.dolphins, []);
   const [mode, setMode] = useState('all');
   const signCount = dolphins.data?.filter((d) => d.animalSigns.length > 0).length ?? 25;
-  const max = mode === 'animal-sign' ? signCount : dolphins.data?.length ?? 36;
+  const max = mode === 'animal-sign' || mode === 'pick-sign' ? signCount : dolphins.data?.length ?? 36;
 
   const [count, setCount] = useState(10);
   const [quiz, setQuiz] = useState(null);
@@ -38,6 +38,7 @@ export default function Quiz() {
   };
 
   const question = quiz?.questions[index];
+  const imageOptions = question?.optionImages; // set when each option is a picture (pick-sign)
 
   const choose = async (option) => {
     if (feedback || busy) return;
@@ -109,7 +110,7 @@ export default function Quiz() {
         <section className="q-card">
           <h1 className="q-prompt">{question.prompt}</h1>
           {question.photos && <PhotoGallery photos={question.photos} name="Mystery animal" whole={question.field === 'animal-sign'} />}
-          <div className="options" role="group" aria-label="Answer choices">
+          <div className={`options${imageOptions ? ' image-options' : ''}`} role="group" aria-label="Answer choices">
             {question.options.map((opt, i) => {
               let cls = 'option';
               if (feedback) {
@@ -118,8 +119,10 @@ export default function Quiz() {
                 else cls += ' dim';
               }
               return (
-                <button key={opt} className={cls} disabled={!!feedback || busy} onClick={() => choose(opt)}>
-                  <kbd>{i + 1}</kbd><span>{opt}</span>
+                <button key={opt} className={cls} disabled={!!feedback || busy} onClick={() => choose(opt)}
+                  aria-label={imageOptions ? `Sign option ${i + 1}` : undefined}>
+                  <kbd>{i + 1}</kbd>
+                  {imageOptions ? <img src={imageOptions[opt].thumb} alt="" /> : <span>{opt}</span>}
                 </button>
               );
             })}
@@ -128,7 +131,9 @@ export default function Quiz() {
           {feedback && (
             <div className={`feedback ${feedback.correct ? 'right' : 'wrong'}`} role="status">
               <strong>{feedback.correct ? '✓ Correct!' : '✗ Not quite.'}</strong>
-              {!feedback.correct && <span> The answer is <b>{feedback.correctAnswer}</b>.</span>}
+              {!feedback.correct && (imageOptions
+                ? <span> The correct sign is highlighted in green.</span>
+                : <span> The answer is <b>{feedback.correctAnswer}</b>.</span>)}
               <button className="link" onClick={() => setSlideOpen(true)}>View source slide</button>
             </div>
           )}
@@ -155,7 +160,7 @@ export default function Quiz() {
         <h1>Family Quiz</h1>
         <p className="lede">
           Each question picks one fact — birth date, parents, origin, offspring, defining features, or a
-          set of photos — from a different family member. Or practice just the animal signs.
+          set of photos — from a different family member. Or practice just the animal signs, either way round.
         </p>
       </div>
       <div className="setup-card">
@@ -166,6 +171,10 @@ export default function Quiz() {
           <button className={mode === 'animal-sign' ? 'on' : ''} aria-pressed={mode === 'animal-sign'}
             onClick={() => setMode('animal-sign')}>
             <b>Animal signs only</b><small>Which animal does each sign belong to?</small>
+          </button>
+          <button className={mode === 'pick-sign' ? 'on' : ''} aria-pressed={mode === 'pick-sign'}
+            onClick={() => setMode('pick-sign')}>
+            <b>Pick the sign</b><small>Given a name, choose the matching sign</small>
           </button>
         </div>
         <label htmlFor="count">Number of questions: <b>{Math.min(count, max)}</b></label>
