@@ -8,11 +8,20 @@ import ReviewList from '../components/ReviewList.jsx';
 
 const pad = (n) => String(n).padStart(2, '0');
 
+// Recent players shown as one-tap buttons (two rows of three on a phone); the rest sit in an accordion.
+const QUICK_PICKS = 6;
+const NAME_KEY = 'drc-quiz-name';
+const loadName = () => { try { return localStorage.getItem(NAME_KEY) ?? ''; } catch { return ''; } };
+const saveName = (n) => { try { localStorage.setItem(NAME_KEY, n); } catch { /* storage unavailable */ } };
+const sameName = (a, b) => a.trim().toLowerCase() === b.trim().toLowerCase();
+
 const verdict = (pct) =>
   pct >= 90 ? 'Outstanding!' : pct >= 70 ? 'Nice work!' : pct >= 50 ? 'Getting there.' : 'Keep practicing — you’ll get them.';
 
 export default function Quiz() {
   const dolphins = useLoad(api.dolphins, []);
+  const users = useLoad(api.users, []);
+  const [name, setName] = useState(loadName);
   const [mode, setMode] = useState('all');
   const signCount = dolphins.data?.filter((d) => d.animalSigns.length > 0).length ?? 25;
   const max = mode === 'animal-sign' || mode === 'pick-sign' ? signCount : dolphins.data?.length ?? 36;
@@ -31,7 +40,8 @@ export default function Quiz() {
   const start = async () => {
     setBusy(true); setError(null);
     try {
-      const q = await api.startQuiz(Math.min(count, max), mode);
+      const q = await api.startQuiz(Math.min(count, max), mode, name.trim());
+      saveName(q.user.name); setName(q.user.name);
       setQuiz(q); setIndex(0); setFeedback(null); setPicked(null);
       setTally({ correct: 0, answered: 0 }); setFinished(null);
     } catch (e) { setError(e); } finally { setBusy(false); }
@@ -76,7 +86,7 @@ export default function Quiz() {
     return (
       <div className="page">
         <div className="score-card">
-          <p className="score-verdict">{verdict(finished.percent)}</p>
+          <p className="score-verdict">{verdict(finished.percent)}{finished.user && `, ${finished.user.name}`}</p>
           <p className="score-pct">{finished.percent}%</p>
           <div className="score-split">
             <div className="right"><b>{finished.correct}</b> correct</div>
@@ -84,7 +94,9 @@ export default function Quiz() {
             <div><b>{finished.total}</b> questions</div>
           </div>
           <div className="actions">
-            <button className="btn" onClick={() => { setQuiz(null); setFinished(null); }}>Take another quiz</button>
+            <button className="btn" onClick={() => { setQuiz(null); setFinished(null); users.reload(); }}>
+              Take another quiz
+            </button>
             <Link className="btn secondary" to="/history">View history</Link>
           </div>
         </div>
@@ -99,7 +111,7 @@ export default function Quiz() {
     return (
       <div className="page quiz">
         <div className="progress-row">
-          <span>Question {index + 1} of {quiz.total}</span>
+          <span>{quiz.user.name} · Question {index + 1} of {quiz.total}</span>
           <span>{tally.correct} correct so far</span>
         </div>
         <div className="progress" role="progressbar" aria-valuemin={0} aria-valuemax={quiz.total}
@@ -154,6 +166,17 @@ export default function Quiz() {
 
   // ---- Setup ----
   const presets = [5, 10, 20].filter((n) => n < max).concat(max);
+  const allUsers = users.data ?? [];
+  const quick = allUsers.slice(0, QUICK_PICKS);
+  const more = allUsers.slice(QUICK_PICKS);
+  const moreHasSelection = more.some((u) => sameName(u.name, name));
+  const isNew = name.trim() && !allUsers.some((u) => sameName(u.name, name));
+  const userButton = (u) => (
+    <button key={u.id} type="button" className={`chip${sameName(u.name, name) ? ' on' : ''}`}
+      aria-pressed={sameName(u.name, name)} onClick={() => setName(u.name)}>
+      {u.name}
+    </button>
+  );
   return (
     <div className="page narrow">
       <div className="page-head">
@@ -164,6 +187,20 @@ export default function Quiz() {
         </p>
       </div>
       <div className="setup-card">
+        <fieldset className="who">
+          <legend>Who’s taking the quiz?</legend>
+          {quick.length > 0 && <div className="user-picks">{quick.map(userButton)}</div>}
+          {more.length > 0 && (
+            <details className="more-users" open={moreHasSelection || undefined}>
+              <summary>More players ({more.length})</summary>
+              <div className="user-picks">{more.map(userButton)}</div>
+            </details>
+          )}
+          <input className="name-input" type="text" value={name} maxLength={40} autoComplete="off"
+            placeholder={quick.length ? 'Or type a new name' : 'Your name'} aria-label="Your name"
+            onChange={(e) => setName(e.target.value)} />
+          {isNew && <small className="hint">New player — “{name.trim()}” will be added.</small>}
+        </fieldset>
         <div className="mode-switch" role="group" aria-label="Quiz type">
           <button className={mode === 'all' ? 'on' : ''} aria-pressed={mode === 'all'} onClick={() => setMode('all')}>
             <b>All topics</b><small>Facts and photos, one per animal</small>
@@ -188,8 +225,8 @@ export default function Quiz() {
           ))}
         </div>
         {error && <p className="error" role="alert">{error.message}</p>}
-        <button className="btn big" onClick={start} disabled={busy || dolphins.loading}>
-          {busy ? 'Starting…' : 'Start quiz'}
+        <button className="btn big" onClick={start} disabled={busy || dolphins.loading || !name.trim()}>
+          {busy ? 'Starting…' : name.trim() ? 'Start quiz' : 'Enter your name to start'}
         </button>
       </div>
     </div>

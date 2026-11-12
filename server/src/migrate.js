@@ -60,6 +60,21 @@ ALTER TABLE quizzes ADD COLUMN IF NOT EXISTS mode TEXT NOT NULL DEFAULT 'all';
 ALTER TABLE dolphins ADD COLUMN IF NOT EXISTS headshot TEXT;
 
 CREATE INDEX IF NOT EXISTS quizzes_completed_idx ON quizzes (completed_at DESC);
+
+-- Quiz takers. No accounts: a user is just a name, matched case-insensitively.
+CREATE TABLE IF NOT EXISTS quiz_users (
+  id         SERIAL PRIMARY KEY,
+  name       TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE UNIQUE INDEX IF NOT EXISTS quiz_users_name_key ON quiz_users (lower(name));
+ALTER TABLE quizzes ADD COLUMN IF NOT EXISTS user_id INT REFERENCES quiz_users(id);
+CREATE INDEX IF NOT EXISTS quizzes_user_idx ON quizzes (user_id);
+
+-- Quizzes taken before users existed belong to Britt. New quizzes always carry a user,
+-- so this only ever touches the legacy rows.
+INSERT INTO quiz_users (name) VALUES ('Britt') ON CONFLICT (lower(name)) DO NOTHING;
+UPDATE quizzes SET user_id = (SELECT id FROM quiz_users WHERE lower(name) = 'britt') WHERE user_id IS NULL;
 `;
 
 // Idempotent: creates tables and upserts the dolphin content from data/dolphins.json.

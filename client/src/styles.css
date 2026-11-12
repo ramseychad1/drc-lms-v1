@@ -365,3 +365,27 @@ td.wrong { color: var(--bad); font-weight: 600; }
   border: 1px solid var(--border); background: var(--surface-2);
 }
 .review-signs figcaption { font-size: 0.85rem; color: var(--muted); }
+
+/* Quiz setup: who's playing */
+.who { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; min-width: 0; }
+.who legend { font-size: 1.1rem; font-weight: 600; padding: 0; margin-bottom: 10px; }
+.user-picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.user-picks .chip {
+  min-height: 44px; padding: 8px 10px; border-radius: 10px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.more-users summary { cursor: pointer; color: var(--primary); font-weight: 600; padding: 6px 0; }
+.more-users[open] summary { margin-bottom: 8px; }
+.name-input {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface); color: var(--text); font: inherit; font-size: 1rem;
+}
+.name-input:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.who .hint { color: var(--muted); }
+
+/* History: per-player */
+.players-table { margin-bottom: 8px; }
+.players-table tr.selected td { background: var(--surface-2); }
+.players-table .link { margin-left: 0; font-weight: 600; }
+.history-head { display: grid; gap: 10px; margin-bottom: 14px; }
+.history-head .section-title { margin-bottom: 0; }

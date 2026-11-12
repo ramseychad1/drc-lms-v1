@@ -7,7 +7,8 @@ Full-stack study app built from the DRC family slideshow, `resources/Dolphin ID 
 - **Flashcard quiz** — choose 1–36 questions. Each question is one data point (birth date, parents, origin,
   offspring, rescue date, defining features, or *all* photos of an animal on one card) from a different family member.
   Instant right/wrong feedback; final score with correct / incorrect / percent.
-- **History** — every completed quiz with date, score and a full question-by-question review.
+- **History** — every completed quiz with player, date, score and a full question-by-question review, plus
+  scores by player.
 
 Stack: Node 20 + Express, PostgreSQL, React (Vite). One deployable service serves the API and the built UI.
 
@@ -48,5 +49,7 @@ The build context is the repo root, so the Dockerfile uses root-relative `COPY` 
 
 ## Notes
 
-- Quiz history is shared by everyone using the deployment (there are no user accounts).
+- There are no user accounts. Each quiz is tagged with the player's name, entered (or tapped from the recent
+  players) on the quiz setup screen; names match case-insensitively. History shows scores per player, and
+  quizzes taken before players existed are assigned to Britt.
 - Source text is kept verbatim, including its typos (e.g. "Lage, lighter fur").

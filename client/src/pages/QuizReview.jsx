@@ -15,7 +15,7 @@ export default function QuizReview() {
           <>
             <div className="page-head">
               <h1>{q.percent}% — {q.correct} of {q.total} correct</h1>
-              <p className="lede">{formatDate(q.completedAt)}</p>
+              <p className="lede">{q.user ? `${q.user.name} · ` : ''}{formatDate(q.completedAt)}</p>
             </div>
             <ReviewList questions={q.questions} />
           </>

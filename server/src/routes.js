@@ -57,6 +57,21 @@ api.get('/source-pages', wrap(async (_req, res) => {
   ]);
 }));
 
+// ---- Users ---------------------------------------------------------------
+
+const MAX_NAME = 40;
+const cleanName = (raw) => (typeof raw === 'string' ? raw.trim().replace(/\s+/g, ' ') : '');
+
+// Most recently active first, so the quiz setup screen can show the last few as one-tap buttons.
+api.get('/users', wrap(async (_req, res) => {
+  const { rows } = await query(`
+    SELECT u.id, u.name, max(q.created_at) AS last_quiz_at
+      FROM quiz_users u LEFT JOIN quizzes q ON q.user_id = u.id
+     GROUP BY u.id
+     ORDER BY max(q.created_at) DESC NULLS LAST, u.created_at DESC`);
+  res.json(rows.map((r) => ({ id: r.id, name: r.name, lastQuizAt: r.last_quiz_at })));
+}));
+
 // ---- Quiz ----------------------------------------------------------------
 
 const IMAGE_KIND = { photos: 'photo', 'animal-sign': 'animal-sign' };
@@ -88,6 +103,9 @@ api.post('/quizzes', wrap(async (req, res) => {
       FROM dolphins d`);
   const mode = req.body?.mode ?? 'all';
   if (!MODES.includes(mode)) return res.status(400).json({ error: `mode must be one of ${MODES.join(', ')}` });
+  const name = cleanName(req.body?.name);
+  if (!name) return res.status(400).json({ error: 'Enter your name to start the quiz' });
+  if (name.length > MAX_NAME) return res.status(400).json({ error: `Name must be ${MAX_NAME} characters or fewer` });
   const requested = Number.parseInt(req.body?.count, 10);
   if (!Number.isInteger(requested) || requested < 1) {
     return res.status(400).json({ error: 'count must be a positive integer' });
@@ -98,8 +116,14 @@ api.post('/quizzes', wrap(async (req, res) => {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
+    // Reuse an existing user whose name matches ignoring case; the DO UPDATE makes RETURNING yield the row.
+    const { rows: [user] } = await client.query(
+      `INSERT INTO quiz_users (name) VALUES ($1)
+       ON CONFLICT (lower(name)) DO UPDATE SET name = quiz_users.name
+       RETURNING id, name`, [name]);
     const { rows: [quiz] } = await client.query(
-      'INSERT INTO quizzes (total_questions, mode) VALUES ($1, $2) RETURNING id, created_at', [count, mode]);
+      'INSERT INTO quizzes (total_questions, mode, user_id) VALUES ($1, $2, $3) RETURNING id, created_at',
+      [count, mode, user.id]);
     const saved = [];
     for (const [i, q] of questions.entries()) {
       const { rows: [row] } = await client.query(
@@ -112,6 +136,7 @@ api.post('/quizzes', wrap(async (req, res) => {
     res.status(201).json({
       id: quiz.id,
       mode,
+      user: { id: user.id, name: user.name },
       total: count,
       questions: await Promise.all(saved.map(publicQuestion)),
     });
@@ -165,6 +190,7 @@ api.post('/quizzes/:id/questions/:qid/answer', wrap(async (req, res) => {
 const summarize = (r) => ({
   id: r.id,
   mode: r.mode,
+  user: r.user_id ? { id: r.user_id, name: r.user_name } : null,
   createdAt: r.created_at,
   completedAt: r.completed_at,
   total: r.total_questions,
@@ -173,15 +199,17 @@ const summarize = (r) => ({
   percent: Math.round((r.correct_count / r.total_questions) * 100),
 });
 
+const QUIZ_SELECT = 'SELECT q.*, u.name AS user_name FROM quizzes q LEFT JOIN quiz_users u ON u.id = q.user_id';
+
 api.get('/quizzes', wrap(async (_req, res) => {
   const { rows } = await query(
-    'SELECT * FROM quizzes WHERE completed_at IS NOT NULL ORDER BY completed_at DESC LIMIT 200');
+    `${QUIZ_SELECT} WHERE q.completed_at IS NOT NULL ORDER BY q.completed_at DESC LIMIT 500`);
   res.json(rows.map(summarize));
 }));
 
 api.get('/quizzes/:id', wrap(async (req, res) => {
   const { rows: [quiz] } = await query(
-    'SELECT * FROM quizzes WHERE id = $1 AND completed_at IS NOT NULL', [req.params.id]);
+    `${QUIZ_SELECT} WHERE q.id = $1 AND q.completed_at IS NOT NULL`, [req.params.id]);
   if (!quiz) return res.status(404).json({ error: 'Quiz not found' });
   const { rows } = await query(
     `SELECT qq.*, d.slug, d.name AS dolphin_name, d.page,
