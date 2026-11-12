@@ -21,7 +21,10 @@ const verdict = (pct) =>
 export default function Quiz() {
   const dolphins = useLoad(api.dolphins, []);
   const users = useLoad(api.users, []);
-  const [name, setName] = useState(loadName);
+  // A tapped player button and the free-text box are separate, so the box only ever holds what was typed.
+  const [player, setPlayer] = useState(loadName);
+  const [typed, setTyped] = useState('');
+  const name = typed.trim() || player;
   const [mode, setMode] = useState('all');
   const signCount = dolphins.data?.filter((d) => d.animalSigns.length > 0).length ?? 25;
   const max = mode === 'animal-sign' || mode === 'pick-sign' ? signCount : dolphins.data?.length ?? 36;
@@ -41,7 +44,7 @@ export default function Quiz() {
     setBusy(true); setError(null);
     try {
       const q = await api.startQuiz(Math.min(count, max), mode, name.trim());
-      saveName(q.user.name); setName(q.user.name);
+      saveName(q.user.name); setPlayer(q.user.name); setTyped('');
       setQuiz(q); setIndex(0); setFeedback(null); setPicked(null);
       setTally({ correct: 0, answered: 0 }); setFinished(null);
     } catch (e) { setError(e); } finally { setBusy(false); }
@@ -173,7 +176,7 @@ export default function Quiz() {
   const isNew = name.trim() && !allUsers.some((u) => sameName(u.name, name));
   const userButton = (u) => (
     <button key={u.id} type="button" className={`chip${sameName(u.name, name) ? ' on' : ''}`}
-      aria-pressed={sameName(u.name, name)} onClick={() => setName(u.name)}>
+      aria-pressed={sameName(u.name, name)} onClick={() => { setPlayer(u.name); setTyped(''); }}>
       {u.name}
     </button>
   );
@@ -196,9 +199,9 @@ export default function Quiz() {
               <div className="user-picks">{more.map(userButton)}</div>
             </details>
           )}
-          <input className="name-input" type="text" value={name} maxLength={40} autoComplete="off"
+          <input className="name-input" type="text" value={typed} maxLength={40} autoComplete="off"
             placeholder={quick.length ? 'Or type a new name' : 'Your name'} aria-label="Your name"
-            onChange={(e) => setName(e.target.value)} />
+            onChange={(e) => { setTyped(e.target.value); setPlayer(''); }} />
           {isNew && <small className="hint">New player — “{name.trim()}” will be added.</small>}
         </fieldset>
         <div className="mode-switch" role="group" aria-label="Quiz type">
